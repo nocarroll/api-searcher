@@ -25,8 +25,13 @@ export default {
 /* Import Font Awesome  */
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
+html {
+  overflow-y: auto;
+}
+
 #app {
   background: #333;
   background: linear-gradient(to bottom right, $primary,  $primary-alt);
 }
+
 </style>

@@ -1,21 +1,23 @@
 <template>
-  <nav id="app-header" class="navbar is-transparent">
-    <div class="navbar-brand">
+  <header id="app-header" class="navbar is-transparent">
+    <div class="container">
+      <div class="navbar-brand">
       <a class="navbar-item" href="https://github.com/nocarroll/api-searcher">
-        <span class="icon">
+        <span class="icon brand">
           <i class="fa fa-globe"></i>
         </span>
         &nbsp;
         <span>api-searcher</span>
       </a>
 
-      <div class="navbar-burger">
+      <nav class="navbar-burger">
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </nav>
     </div>
-  </nav>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -30,9 +32,12 @@
   @import '../styles/variables.sass';
   #app-header {
     background: $primary;
-     background: rgba(255, 255, 255, 0.05); 
-     .navbar-item {
+    background: rgba(255, 255, 255, 0.05); 
+    .navbar-item {
       color: #FFF;
+    }
+    .brand {
+      color: $yellow;
     }
     box-shadow: $drop-z0-shadow;
   }

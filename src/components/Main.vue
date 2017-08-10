@@ -1,9 +1,17 @@
 <template>
   <main class="main columns">
     <section class="column is-half is-offset-one-quarter">
-      <div v-for="entry in publicAPIs" class="notification">
-        {{ entry }}
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input is-medium is-primary" type="text" placeholder="Search APIs...">
+          <span class="icon is-left">
+            <i class="fa fa-search"></i>
+          </span>
+        </p>
       </div>
+      <!-- <div v-for="entry in publicAPIs" class="notification">
+        {{ entry }}
+      </div> -->
     </section>
   </main>
 </template>
@@ -33,7 +41,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .main {
-  padding: 2em;
-  overflow-y: auto;
+  flex-grow: 1;
+  padding: 2em; 
+  overflow-y: auto; 
 }
 </style>
