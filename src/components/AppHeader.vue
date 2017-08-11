@@ -3,11 +3,9 @@
     <div class="container">
       <div class="navbar-brand">
       <a class="navbar-item" href="https://github.com/nocarroll/api-searcher">
-        <span class="icon brand">
-          <i class="fa fa-globe"></i>
-        </span>
+        <img src="../assets/logo28x28.png" alt="API-searcher logo" width="28" height="28">
         &nbsp;
-        <span>api-searcher</span>
+        <span class="brand">api-searcher</span>
       </a>
 
       <nav class="navbar-burger">
@@ -38,6 +36,7 @@
     }
     .brand {
       color: $yellow;
+      font-family: monospace;
     }
     box-shadow: $drop-z0-shadow;
   }

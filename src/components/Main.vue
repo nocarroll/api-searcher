@@ -4,7 +4,7 @@
       @onSearch="handleSearch"
     ></search-box>
     <results-box
-      :items="publicAPIs"
+      :items="apisFilteredBySearchTerm"
     ></results-box>
   </main>
 </template>
@@ -21,6 +21,15 @@ export default {
       count: 0,
       search: '',
       publicAPIs: []
+    }
+  },
+  computed: {
+    apisFilteredBySearchTerm () {
+      const apis = this.publicAPIs
+      if (this.search) {
+        return apis.filter(item => item.API.toLowerCase().indexOf(this.search.toLowerCase()) > -1)
+      }
+      return apis
     }
   },
   mounted () {
