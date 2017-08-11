@@ -1,6 +1,7 @@
 <template>
   <section class="field search-box">
-    <p class="control has-icons-left has-icons-right">
+    <div class="container">
+      <p class="control has-icons-left has-icons-right">
       <input 
         class="input is-medium is-primary" 
         type="text" 
@@ -11,6 +12,7 @@
         <i class="fa fa-search"></i>
       </span>
     </p>
+    </div>
   </section>
 </template>
 
@@ -25,7 +27,16 @@ export default {
   },
   watch: {
     search (value) {
-      this.$emit('onSearch', value)
+      let query = ''
+      let keyword = value
+      // split search into query if there is a colon in the string
+      if (value.indexOf(':') > -1) {
+
+      }
+      this.$emit('onSearch', {
+        query,
+        keyword
+      })
     }
   }
 }

@@ -3,9 +3,17 @@
     <search-box 
       @onSearch="handleSearch"
     ></search-box>
-    <results-box
-      :items="apisFilteredBySearchTerm"
-    ></results-box>
+    <transition name="fade" mode="out-in">
+      <results-box
+        v-if="loaded" 
+        key="results"   
+        :items="apisFilteredBySearchTerm"
+      ></results-box>      
+      <loader-box
+        v-else
+      ></loader-box>
+    </transition>
+
   </main>
 </template>
 
@@ -13,21 +21,28 @@
 import api from '@/api/api'
 import SearchBox from './SearchBox'
 import ResultsBox from './ResultsBox'
+import LoaderBox from './LoaderBox'
 
 export default {
   name: 'main',
   data () {
     return {
+      loaded: false,
       count: 0,
-      search: '',
+      query: '',
+      keyword: '',
       publicAPIs: []
     }
   },
   computed: {
     apisFilteredBySearchTerm () {
       const apis = this.publicAPIs
-      if (this.search) {
-        return apis.filter(item => item.API.toLowerCase().indexOf(this.search.toLowerCase()) > -1)
+      const keyword = this.keyword
+      if (keyword) {
+        return apis.filter(item => {
+          const contents = `${item.API} ${item.Description} ${item.Section}`
+          return contents.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+        })
       }
       return apis
     }
@@ -37,16 +52,19 @@ export default {
       .then(data => {
         this.count = data.count
         this.publicAPIs = data.entries
+        this.loaded = true
       })
   },
   methods: {
-    handleSearch (value) {
-      this.search = value
+    handleSearch (payload) {
+      this.query = payload.query
+      this.keyword = payload.keyword
     }
   },
   components: {
     SearchBox,
-    ResultsBox
+    ResultsBox,
+    LoaderBox
   }
 }
 
