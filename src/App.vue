@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="hero is-fullheight">
+  <div id="app">
     <app-header></app-header>
     <router-view></router-view>
   </div>
@@ -32,6 +32,19 @@ html {
 #app {
   background: #333;
   background: linear-gradient(to bottom right, $primary,  $primary-alt);
+  min-height: 100%;
+  min-height: 100vh;
+  max-height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Fade Transition */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
 </style>

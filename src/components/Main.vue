@@ -1,29 +1,25 @@
 <template>
-  <main class="main columns">
-    <section class="column is-half is-offset-one-quarter">
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input is-medium is-primary" type="text" placeholder="Search APIs...">
-          <span class="icon is-left">
-            <i class="fa fa-search"></i>
-          </span>
-        </p>
-      </div>
-      <!-- <div v-for="entry in publicAPIs" class="notification">
-        {{ entry }}
-      </div> -->
-    </section>
+  <main class="main">
+    <search-box 
+      @onSearch="handleSearch"
+    ></search-box>
+    <results-box
+      :items="publicAPIs"
+    ></results-box>
   </main>
 </template>
 
 <script>
 import api from '@/api/api'
+import SearchBox from './SearchBox'
+import ResultsBox from './ResultsBox'
 
 export default {
   name: 'main',
   data () {
     return {
       count: 0,
+      search: '',
       publicAPIs: []
     }
   },
@@ -33,16 +29,24 @@ export default {
         this.count = data.count
         this.publicAPIs = data.entries
       })
+  },
+  methods: {
+    handleSearch (value) {
+      this.search = value
+    }
+  },
+  components: {
+    SearchBox,
+    ResultsBox
   }
 }
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .main {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  padding: 2em; 
-  overflow-y: auto; 
 }
 </style>
